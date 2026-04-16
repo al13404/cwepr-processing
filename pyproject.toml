@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cwepr-processing"
+version = "0.1.0"
+description = "CW-EPR data processing toolkit for Bruker DSC/DTA files."
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+authors = [
+    {name = "Alex Garces"},
+]
+keywords = ["EPR", "CW-EPR", "spectroscopy", "biophysics", "Bruker"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Chemistry",
+    "Topic :: Scientific/Engineering :: Physics",
+]
+dependencies = [
+    "numpy>=1.24",
+    "scipy>=1.10",
+]
+
+[project.optional-dependencies]
+plot = ["matplotlib>=3.7"]
+dev = ["pytest>=7.0", "matplotlib>=3.7"]
+
+[project.urls]
+Homepage = "https://github.com/amg43-mcw/cwepr-processing"
+Repository = "https://github.com/amg43-mcw/cwepr-processing"
+
+[tool.setuptools.packages.find]
+where = ["src"]
