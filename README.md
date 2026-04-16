@@ -64,13 +64,13 @@ showing every intermediate step for visual verification.
 ## Installation
 
 ```bash
-pip install git+https://github.com/amg43-mcw/cwepr-processing.git
+pip install git+https://github.com/al13404/cwepr-processing.git
 ```
 
 ### For development (editable install)
 
 ```bash
-git clone https://github.com/amg43-mcw/cwepr-processing.git
+git clone https://github.com/al13404/cwepr-processing.git
 cd cwepr-processing
 pip install -e ".[dev]"
 ```
