@@ -1,13 +1,19 @@
 # cwepr-processing
 
-**CW-EPR data processing toolkit for Bruker DSC/DTA files.**
+**CW-EPR data processing toolkit for Bruker DSC/DTA and Magnettech CSV files.**
 
 A reusable Python package for loading, processing, and normalizing
-continuous-wave EPR spectra from Bruker `.DSC`/`.DTA` files.
+continuous-wave EPR spectra from Bruker `.DSC`/`.DTA` files and
+Magnettech (ESR5000 / MS-5000) `.csv` exports.
 
 ## Features
 
-- **Bruker file I/O** -- Read `.DSC` parameter files and `.DTA` binary data
+- **Multi-format file I/O**
+  - Bruker `.DSC`/`.DTA` binary files
+  - Magnettech semicolon-delimited `.csv` exports (field auto-converted
+    from mT to Gauss)
+  - Auto-detection -- `process_directory()` handles mixed directories
+    seamlessly
 - **Automatic background detection** -- Finds any file with "background"
   in the name (case-insensitive)
 - **Full processing pipeline:**
@@ -23,9 +29,12 @@ continuous-wave EPR spectra from Bruker `.DSC`/`.DTA` files.
 
 ## Processing Flow
 
-1. **File I/O** — Binary `.DTA` spectral data and `.DSC` parameter files are
-   parsed to extract the raw first-derivative intensity and the magnetic field
-   axis (start field, sweep width, number of points, byte order).
+1. **File I/O** -- Bruker binary `.DTA` spectral data and `.DSC` parameter
+   files are parsed to extract the raw first-derivative intensity and the
+   magnetic field axis.  Magnettech `.csv` exports are read directly from the
+   semicolon-delimited text; the native mT field values are converted to
+   Gauss (x10) so that all downstream processing uses a consistent unit.
+   Format detection is automatic.
 
 2. **Background Detection & Subtraction** — If a file with "background" in its
    name is present, it is automatically identified and subtracted from each

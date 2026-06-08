@@ -10,7 +10,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from .io import (find_all_epr_files, find_background_file,
-                 load_epr_data)
+                 load_any_epr)
 from .processing import process_spectrum
 
 
@@ -69,18 +69,22 @@ def process_directory(
         bg_file = find_background_file(base_dir)
         if bg_file is not None:
             bg_field, bg_intensity, bg_params = (
-                load_epr_data(bg_file)
+                load_any_epr(bg_file)
             )
             background_intensity = bg_intensity
             if verbose:
                 xmin = bg_params['XMIN']
                 xwid = bg_params['XWID']
+                unit = bg_params.get('XUNI', 'G')
+                src = bg_params.get('SOURCE', 'bruker')
                 print(
                     f"  Background loaded:"
-                    f" {Path(bg_file).name}\n"
+                    f" {Path(bg_file).name}"
+                    f" ({src})\n"
                     f"    Points: {bg_params['XPTS']}\n"
                     f"    Field range:"
-                    f" {xmin:.1f} -- {xmin + xwid:.1f} G"
+                    f" {xmin:.1f} -- {xmin + xwid:.1f}"
+                    f" {unit}"
                 )
         else:
             if verbose:
@@ -104,7 +108,7 @@ def process_directory(
     for filepath, filename in epr_files:
         try:
             field, intensity, params = (
-                load_epr_data(filepath)
+                load_any_epr(filepath)
             )
             condition = extract_condition(filename)
 

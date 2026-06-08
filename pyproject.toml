@@ -4,15 +4,15 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "cwepr-processing"
-version = "0.1.0"
-description = "CW-EPR data processing toolkit for Bruker DSC/DTA files."
+version = "0.2.0"
+description = "CW-EPR data processing toolkit for Bruker DSC/DTA and Magnettech CSV files."
 readme = "README.md"
 license = {text = "MIT"}
 requires-python = ">=3.10"
 authors = [
     {name = "Alex Garces"},
 ]
-keywords = ["EPR", "CW-EPR", "spectroscopy", "biophysics", "Bruker"]
+keywords = ["EPR", "CW-EPR", "spectroscopy", "biophysics", "Bruker", "Magnettech"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Science/Research",
